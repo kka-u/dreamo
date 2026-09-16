@@ -24,18 +24,34 @@ def comparar(palavra, tentativa):
 
     for i in range(len(tentativa)):
         if tentativa[i] == palavra[i]:
-            resultado[i] == 'verde'
+            resultado[i] = 'verde'
             letras_disponiveis[i] = None
 
     for i in range(len(tentativa)):
         if resultado[i] == 'verde':
             continue
         if tentativa[i] in letras_disponiveis:
-            resultado[i] == 'amarelo'
+            resultado[i] = 'amarelo'
             letras_disponiveis[letras_disponiveis.index(tentativa[i])] = None
-
-    print(resultado)        
 
     return resultado
 
-comparar(palavra, tentativa)
+
+resultado = comparar(palavra, tentativa)
+
+init()
+def mostrar_resultado(tentativa, resultado):
+    cores = {
+        'cinza': Fore.WHITE,
+        'verde': Fore.GREEN,
+        'amarelo': Fore.YELLOW
+    }
+
+    saida = ''
+
+    for letra, cor in zip(tentativa, resultado):
+        saida += cores[cor] + letra + Style.RESET_ALL
+
+    print(saida)
+
+mostrar_resultado(tentativa, resultado)
