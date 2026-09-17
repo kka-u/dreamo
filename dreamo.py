@@ -74,7 +74,8 @@ def jogar(palavra):
             resultado = comparar(palavra, tentativa)
             plural = 'tentativa' if tentativas == 1 else 'tentativas'
             print(f'Parabéns! você acertou em {tentativas} {plural}!')
-            return mostrar_resultado(tentativa, resultado)
+            print(mostrar_resultado(tentativa, resultado))
+            return
 
 jogar(palavra)
 
