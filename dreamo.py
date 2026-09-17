@@ -16,7 +16,9 @@ palavras = {
 
 palavra = r.choice(list(palavras.values()))
 
-tentativa = input('digite sua tentativa --> ')
+
+
+
 
 def comparar(palavra, tentativa):
     resultado = ['cinza'] * len(tentativa)
@@ -37,8 +39,6 @@ def comparar(palavra, tentativa):
     return resultado
 
 
-resultado = comparar(palavra, tentativa)
-
 init()
 def mostrar_resultado(tentativa, resultado):
     cores = {
@@ -52,6 +52,29 @@ def mostrar_resultado(tentativa, resultado):
     for letra, cor in zip(tentativa, resultado):
         saida += cores[cor] + letra + Style.RESET_ALL
 
-    print(saida)
+    return saida
 
-mostrar_resultado(tentativa, resultado)
+def jogar(palavra):
+    tentativa = input('digite sua tentativa(apenas 5 letras) --> ')
+    tentativas = 0
+
+    while tentativas < 6:
+
+        if len(tentativa) != len(palavra):
+            tentativa = input(f'tentativa precisa ter {len(palavra)} letras! tente de novo --> ')
+            continue
+
+        if tentativa != palavra:
+            resultado = comparar(palavra, tentativa)
+            tentativas += 1
+            print(mostrar_resultado(tentativa, resultado))
+            tentativa = input('tente novamente(apenas 5 letras) --> ')
+        else:
+            tentativas += 1
+            resultado = comparar(palavra, tentativa)
+            plural = 'tentativa' if tentativas == 1 else 'tentativas'
+            print(f'Parabéns! você acertou em {tentativas} {plural}!')
+            return mostrar_resultado(tentativa, resultado)
+
+jogar(palavra)
+
